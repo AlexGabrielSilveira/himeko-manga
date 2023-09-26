@@ -41,7 +41,7 @@ export default function Navbar() {
                 {loading == true ? '' : (
                     mangas?.map((manga) => (
                     // eslint-disable-next-line react/jsx-key
-                    <Link href={`/${manga.type}/${manga.mal_id}`}>
+                    <Link href={`/manga/${manga.mal_id}`}>
                         <div key={manga.mal_id} className={styles.response_container}>
                                 <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
                                 <ul className={styles.response_list}>

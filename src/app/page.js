@@ -40,7 +40,7 @@ export default function Home() {
                   <ul>
                     <li>{manga.entry.title}</li>
                     <li><Link href={manga.entry.url} target='_blank'>< SiMyanimelist /></Link></li>
-                    <li><Link href={manga.entry.url} target='_blank'><strong>Leia Agora !</strong></Link></li>
+                    <li><Link href={`/manga/${manga.entry.mal_id}`}><strong>Leia Agora !</strong></Link></li>
                   </ul>
                 </div>
               ))}
