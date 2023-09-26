@@ -4,11 +4,13 @@ import Image from 'next/image'
 import styles from './navbar.module.css'
 import { useState } from 'react';
 import Link from 'next/link';
-import { SiMyanimelist } from 'react-icons/si'
+import { AiFillStar } from 'react-icons/ai'
 
 export default function Navbar() {
     const[mangas, setMangas] = useState([])
     const[loading, setLoading] = useState(true)
+    const[visibility, setVisibility] = useState(true)
+
     function handleChange(e) {
         const value = e.target.value
         if(value.length > 3) {
@@ -17,19 +19,25 @@ export default function Navbar() {
             .then(res => {
                 setMangas(res.data)
                 setLoading(false)
+                setVisibility(true)
             })
-
         }
     }
-    
+    function handleClick() {
+        setVisibility(false)
+    }
     return (
         <header className={styles.header}>
-            <div className={styles.logo}>
-                <Image  src="/himeko_logo.png" height="720" width="1280" alt='logo'/>
-                <h1>Himeko</h1>
-            </div>
+            <Link href="/">
+                <div className={styles.logo}>
+                        <Image  src="/himeko_logo.png" height="720" width="1280" alt='logo'/>
+                        <h1>Himeko</h1>
+                </div>
+            </Link>
             <div className={styles.search}>
                 <input type='search' placeholder='Ex: One piece' onChange={handleChange}/>
+                <button onClick={handleClick}>X</button>
+                {visibility == true ? (
                 <div className={styles.response}>
                 {loading == true ? '' : (
                     mangas?.map((manga) => (
@@ -39,20 +47,20 @@ export default function Navbar() {
                                 <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
                                 <ul className={styles.response_list}>
                                     <li><strong>{manga.title}</strong></li>
-                                    <li><Link href={manga.url} target='_blank'><SiMyanimelist /></Link></li> 
                                     <li><strong>Autor: </strong>{manga.authors[0]?.name}</li>
                                     <li><strong>tags: </strong>
                                     {manga.genres.map(genre => (
-                                        // eslint-disable-next-line react/jsx-key
                                         <span key={genre.mal_id}> {genre.name} </span>
-                                    ))}
+                                        ))}
                                     </li>
+                                    <li><strong>score<AiFillStar />: </strong>{manga.score}</li>
                                 </ul>
                         </div>
                     </Link>
                     ))
                 )}
                 </div>
+                ) : ''}
             </div>
             <div className={styles.user}>
                 <h2>Alex</h2>
