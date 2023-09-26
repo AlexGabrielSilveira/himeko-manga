@@ -1,0 +1,40 @@
+.flex_main {
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.flex_main div {
+    width: 100%;
+}
+.mangas_by_recommendations {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 600px;
+}
+.mangas_by_recommendations::-webkit-scrollbar {
+    background-color: #f2f2f2; 
+    
+    border-radius: 6px; 
+}
+.mangas_by_recommendations::-webkit-scrollbar-thumb {
+    background: linear-gradient(15deg, #db0e0e5d, #ffa600c2);
+    border-radius: 6px; 
+}
+
+.mangas_by_recommendations div {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px;
+}
+.mangas_by_recommendations ul {
+    list-style-type: none;
+    text-align: start;
+}
+.mangas_by_recommendations ul li {
+    margin-left: 10px;
+}
+.mangas_by_recommendations svg {
+    font-size: 22pt;
+}

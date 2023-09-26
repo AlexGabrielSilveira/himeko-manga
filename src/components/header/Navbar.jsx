@@ -30,12 +30,11 @@ export default function Navbar() {
         <header className={styles.header}>
             <Link href="/">
                 <div className={styles.logo}>
-                        <Image  src="/himeko_logo.png" height="720" width="1280" alt='logo'/>
-                        <h1>Himeko</h1>
+                    <h1>Himeko</h1>
                 </div>
             </Link>
             <div className={styles.search}>
-                <input type='search' placeholder='Ex: One piece' onChange={handleChange}/>
+                <input type='text' placeholder='Ex: One piece' onChange={handleChange}/>
                 <button onClick={handleClick}>X</button>
                 {visibility == true ? (
                 <div className={styles.response}>
