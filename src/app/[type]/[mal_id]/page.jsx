@@ -6,6 +6,7 @@ import styles from './mangaPage.module.css'
 import Link from 'next/link';
 import { SiMyanimelist } from 'react-icons/si'
 import Image from "next/image";
+import { AiFillStar } from 'react-icons/ai'
 
 export default function MangaPage() {
     const[mangaInfos, setMangaInfos] = useState([])
@@ -24,7 +25,6 @@ export default function MangaPage() {
     useEffect(() => {
         getMangaInfos()
     }, [])
-
     return ( 
         <>
         {loading == true ? (<h1>carregando ...</h1>) : (
@@ -43,7 +43,8 @@ export default function MangaPage() {
                             <span key={genre.mal_id}> {genre.name} </span>
                         ))}
                         </li>
-                        <li><Link href="#" target='_blank'><SiMyanimelist /></Link></li> 
+                        <li className={styles.score}><strong>score <AiFillStar />: {mangaInfos.score}</strong></li>
+                        <li className={styles.mal}><Link href={`${mangaInfos.url}`} target='_blank'><SiMyanimelist /></Link></li> 
                     </ul>
                     <ul>
                         <li><strong>Sinopse</strong></li>
@@ -54,16 +55,13 @@ export default function MangaPage() {
             <div className={styles.caps_container}>
                 <h1>Capitulos</h1>
                 <div className={styles.caps}>
-                    <Link href="#"><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
+                    <Link href={`/read/${mangaInfos.mal_id}`}><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
                 </div>
                 <div className={styles.caps}>
-                    <Link href="#"><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
+                    <Link href={`/read/${mangaInfos.mal_id}`}><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
                 </div>
                 <div className={styles.caps}>
-                    <Link href="#"><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
-                </div>
-                <div className={styles.caps}>
-                    <Link href="#"><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
+                    <Link href={`/read/${mangaInfos.mal_id}`}><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
                 </div>
             </div>
         </div>

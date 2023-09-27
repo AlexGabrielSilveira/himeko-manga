@@ -62,7 +62,7 @@ export default function Navbar() {
                 ) : ''}
             </div>
             <div className={styles.user}>
-                <h2>Alex</h2>
+                <h2>Alex 🔽</h2>
             </div>
         </header>
     )

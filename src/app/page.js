@@ -14,7 +14,6 @@ export default function Home() {
     .then(res => res.json())
     .then(res => {
       setMangaRecommendations(res.data.slice(0,10))
-      console.log(res.data.slice(0,10))
       setLoading(true)
     })
   }

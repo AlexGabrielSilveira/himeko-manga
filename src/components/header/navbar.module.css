@@ -6,8 +6,9 @@
     justify-content: space-between;
     align-items: center;
     color: #f2f2f2;
-    background: linear-gradient(15deg, #db0e0e, orange);
-}
+    box-shadow: 0px 0px 10px 1px #222;
+    /* background: linear-gradient(15deg, #db0e0e, orange); */
+} 
 .logo {
     display: flex;
     align-items: center;
@@ -40,6 +41,9 @@
     border-bottom-left-radius: 4px;
     width: 100%;
 }
+.user {
+    font-family: cursive;
+}
 .response {
     position: fixed;
     top: 60px;
@@ -48,7 +52,7 @@
     color: #222;
     max-height: 400px;
     overflow-y: scroll;
-    background-color: #f2f2f2;
+    background-color: #f2f2f2f5;
 }
 .response_container {
     display: flex;
@@ -80,9 +84,8 @@
 .response_list svg{
     margin-bottom: -2px;
 }
-
 .response_list span{
-    background-color: gray;
+    background-color: rgb(128, 128, 128);
     border-radius: 2px;
     margin: 4px;
     padding: 2px;
