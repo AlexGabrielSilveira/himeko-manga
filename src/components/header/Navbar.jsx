@@ -4,7 +4,9 @@ import Image from 'next/image'
 import styles from './navbar.module.css'
 import { useState } from 'react';
 import Link from 'next/link';
-import { AiFillStar } from 'react-icons/ai'
+import { AiFillStar, AiOutlineUser } from 'react-icons/ai'
+import { IoSettingsOutline, IoExitOutline } from 'react-icons/io5'
+import { BsFillBookmarkHeartFill } from 'react-icons/bs'
 
 export default function Navbar() {
     const[mangas, setMangas] = useState([])
@@ -25,6 +27,9 @@ export default function Navbar() {
     }
     function handleClick() {
         setVisibility(false)
+    }
+    function handleOptions() {
+        console.log("aaaaaaaaaaaaaaaaaaaa")
     }
     return (
         <header className={styles.header}>
@@ -62,7 +67,16 @@ export default function Navbar() {
                 ) : ''}
             </div>
             <div className={styles.user}>
-                <h2>Alex 🔽</h2>
+                <h2 onClick={handleOptions}>Alex 🔽</h2>
+                <div className={styles.user_opts}>
+                    <ul>
+                        <li><IoSettingsOutline /> | Adm</li>
+                        <li>-------------------------</li>
+                        <li><AiOutlineUser /> | Perfil</li>
+                        <li> <BsFillBookmarkHeartFill /> | Favoritos</li>
+                        <li> <IoExitOutline /> | Sair</li>
+                    </ul>
+                </div>
             </div>
         </header>
     )

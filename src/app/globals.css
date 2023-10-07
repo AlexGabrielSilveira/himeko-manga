@@ -4,7 +4,7 @@
   padding: 0;
 }
 body {
-  background: linear-gradient(15deg, #db0e0e, orange) no-repeat fixed;
+  background: #dcdcdc;
   width: 100%;
   height: 100%;
   background-size: cover;

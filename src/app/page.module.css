@@ -1,33 +1,32 @@
 .flex_main {
     padding-top: 20px;
-    max-width: 1200px;
+    width: 80%;
     height: 100vh;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     font-family: cursive;
 }
 .flex_main div {
     width: 100%;
 }
 .mangas_by_recommendations {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    max-height: 600px;
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
 }
 .mangas_by_recommendations::-webkit-scrollbar {
     background-color: #f2f2f2; 
-    
     border-radius: 6px; 
 }
 .mangas_by_recommendations::-webkit-scrollbar-thumb {
     background: linear-gradient(15deg, #db0e0e5d, #ffa600c2);
     border-radius: 6px; 
 }
-
 .mangas_by_recommendations div {
     display: flex;
-    justify-content: flex-start;
+    min-width: 200px;
     margin: 10px;
 }
 .mangas_by_recommendations ul {
