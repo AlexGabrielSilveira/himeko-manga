@@ -38,6 +38,7 @@
 }
 .user {
     font-family: cursive;
+    cursor: pointer;
 }
 .user_opts {
     position: fixed;
@@ -54,6 +55,9 @@
 .user_opts li {
     display: flex;
     align-items: center;
+}
+.user_opts a {
+    color: #fff;
 }
 .response {
     position: fixed;

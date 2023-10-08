@@ -1,0 +1,40 @@
+.main_container {
+    width: 80%;
+    margin: 0 auto;
+    font-family: cursive;
+}
+.main_container div {
+    margin: 20px 0px;
+}
+.favs_mangas {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+.favs_mangas::-webkit-scrollbar {
+    background-color: #f2f2f2; 
+    border-radius: 6px; 
+}
+.favs_mangas::-webkit-scrollbar-thumb {
+    background: linear-gradient(15deg, #db0e0e5d, #ffa600c2);
+    border-radius: 6px; 
+}
+.favs_mangas div {
+    display: flex;
+    min-width: 200px;
+    margin: 10px;
+}
+.favs_mangas ul {
+    list-style-type: none;
+    text-align: start;
+}
+.favs_mangas ul li {
+    font-size: 14pt;
+    margin-left: 10px;
+}
+.favs_mangas svg {
+    font-size: 22pt;
+}
+.remove {
+    color: #d61e1e;
+}

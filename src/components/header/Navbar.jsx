@@ -6,15 +6,16 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { AiFillStar, AiOutlineUser } from 'react-icons/ai'
 import { IoSettingsOutline, IoExitOutline } from 'react-icons/io5'
-import { BsFillBookmarkHeartFill } from 'react-icons/bs'
+
 
 export default function Navbar() {
     const[mangas, setMangas] = useState([])
     const[loading, setLoading] = useState(true)
+    const[searchVisibility, setSearchVisibility] = useState(false)
     const[visibility, setVisibility] = useState(true)
 
     function handleChange(e) {
-        const value = e.target.value
+        let value = e.target.value
         if(value.length > 3) {
             fetch(`https://api.jikan.moe/v4/manga?q=${value}&sfw`)
             .then(res => res.json())
@@ -26,10 +27,10 @@ export default function Navbar() {
         }
     }
     function handleClick() {
-        setVisibility(false)
+        setSearchVisibility(!searchVisibility)
     }
     function handleOptions() {
-        console.log("aaaaaaaaaaaaaaaaaaaa")
+        setVisibility(!visibility)
     }
     return (
         <header className={styles.header}>
@@ -39,44 +40,44 @@ export default function Navbar() {
                 </div>
             </Link>
             <div className={styles.search}>
-                <input type='text' placeholder='Ex: One piece' onChange={handleChange}/>
-                <button onClick={handleClick}>X</button>
-                {visibility == true ? (
-                <div className={styles.response}>
-                {loading == true ? '' : (
-                    mangas?.map((manga) => (
-                    // eslint-disable-next-line react/jsx-key
-                    <Link href={`/manga/${manga.mal_id}`}>
-                        <div key={manga.mal_id} className={styles.response_container}>
-                                <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
-                                <ul className={styles.response_list}>
-                                    <li><strong>{manga.title}</strong></li>
-                                    <li><strong>Autor: </strong>{manga.authors[0]?.name}</li>
-                                    <li><strong>tags: </strong>
-                                    {manga.genres.map(genre => (
-                                        <span key={genre.mal_id}> {genre.name} </span>
-                                        ))}
-                                    </li>
-                                    <li><strong>score<AiFillStar />: </strong>{manga.score}</li>
-                                </ul>
-                        </div>
-                    </Link>
-                    ))
-                )}
-                </div>
-                ) : ''}
+                <input type='text' placeholder='Ex: One piece' onChange={handleChange} onClick={handleClick}/>
+                    <div className={styles.response}>
+                    {loading == true ? '' : (
+                        mangas?.map((manga) => (
+                        // eslint-disable-next-line react/jsx-key
+                        <Link href={`/manga/${manga.mal_id}`} onClick={handleClick}>
+                            {searchVisibility == true ? (
+                            <div key={manga.mal_id} className={styles.response_container}>
+                                    <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
+                                    <ul className={styles.response_list}>
+                                        <li><strong>{manga.title}</strong></li>
+                                        <li><strong>Autor: </strong>{manga.authors[0]?.name}</li>
+                                        <li><strong>tags: </strong>
+                                        {manga.genres.map(genre => (
+                                            <span key={genre.mal_id}> {genre.name} </span>
+                                            ))}
+                                        </li>
+                                        <li><strong>score<AiFillStar />: </strong>{manga.score}</li>
+                                    </ul>
+                            </div>
+                            ) : ''}
+                        </Link>
+                        ))
+                    )}
+                    </div>
             </div>
             <div className={styles.user}>
                 <h2 onClick={handleOptions}>Alex 🔽</h2>
-                <div className={styles.user_opts}>
+                {visibility == false ? (
+                    <div className={styles.user_opts}>
                     <ul>
-                        <li><IoSettingsOutline /> | Adm</li>
+                        <li><Link href="/adm"><IoSettingsOutline /> | Adm</Link></li>
                         <li>-------------------------</li>
-                        <li><AiOutlineUser /> | Perfil</li>
-                        <li> <BsFillBookmarkHeartFill /> | Favoritos</li>
+                        <li><Link href="/perfil"><AiOutlineUser /> | Perfil</Link></li>
                         <li> <IoExitOutline /> | Sair</li>
                     </ul>
                 </div>
+                ): ""}
             </div>
         </header>
     )
