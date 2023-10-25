@@ -1,0 +1,26 @@
+.user_container {
+    position: fixed;
+    top: 60px;
+    right: 0px;
+    background-color: #0078d7;
+    height: 100%;
+    width: 340px;
+}
+.user_container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px;
+}
+.user_container form input, .user_container form button{
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 6px;
+    margin: 4px;
+}
+@media (max-width: 500px) {
+    .user_container {
+        width: 100%;
+    }
+}

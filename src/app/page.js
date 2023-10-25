@@ -45,8 +45,13 @@ export default function Home() {
               ))}
             </div>
           </div>
+          <div>
+            <h3>Scanlators</h3>
+            <p>ainda está em desenvolvimento!</p>
+          </div>
         </>
       )}
     </main>
   )
 }
+7

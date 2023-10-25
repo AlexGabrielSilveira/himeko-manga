@@ -4,8 +4,9 @@ import Image from 'next/image'
 import styles from './navbar.module.css'
 import { useState } from 'react';
 import Link from 'next/link';
-import { AiFillStar, AiOutlineUser } from 'react-icons/ai'
-import { IoSettingsOutline, IoExitOutline } from 'react-icons/io5'
+import { AiFillStar } from 'react-icons/ai'
+import User from './user/User';
+
 
 
 export default function Navbar() {
@@ -29,7 +30,7 @@ export default function Navbar() {
     function handleClick() {
         setSearchVisibility(!searchVisibility)
     }
-    function handleOptions() {
+    function handleVibility() {
         setVisibility(!visibility)
     }
     return (
@@ -44,8 +45,7 @@ export default function Navbar() {
                     <div className={styles.response}>
                     {loading == true ? '' : (
                         mangas?.map((manga) => (
-                        // eslint-disable-next-line react/jsx-key
-                        <Link href={`/manga/${manga.mal_id}`} onClick={handleClick}>
+                        <Link href={`/manga/${manga.mal_id}`} onClick={handleClick} key={manga.mal_id}>
                             {searchVisibility == true ? (
                             <div key={manga.mal_id} className={styles.response_container}>
                                     <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
@@ -67,17 +67,10 @@ export default function Navbar() {
                     </div>
             </div>
             <div className={styles.user}>
-                <h2 onClick={handleOptions}>Alex 🔽</h2>
-                {visibility == false ? (
-                    <div className={styles.user_opts}>
-                    <ul>
-                        <li><Link href="/adm"><IoSettingsOutline /> | Adm</Link></li>
-                        <li>-------------------------</li>
-                        <li><Link href="/perfil"><AiOutlineUser /> | Perfil</Link></li>
-                        <li> <IoExitOutline /> | Sair</li>
-                    </ul>
-                </div>
-                ): ""}
+                <h2 onClick={handleVibility}>Entrar</h2>
+                {visibility == false  ? (
+                    <User />
+                ): ""} 
             </div>
         </header>
     )
