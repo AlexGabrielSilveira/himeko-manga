@@ -19,6 +19,9 @@
     padding: 6px;
     margin: 4px;
 }
+.user_container form button {
+    cursor: pointer;
+}
 @media (max-width: 500px) {
     .user_container {
         width: 100%;

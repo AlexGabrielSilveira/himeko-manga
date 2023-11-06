@@ -5,6 +5,7 @@ import styles from './page.module.css'
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiMyanimelist } from 'react-icons/si'
+import Scanlator from '@/components/header/scanlators/Scanlator';
 export default function Home() {
   const[mangaRecommendations, setMangaRecommendations] = useState([])
   const[loading, setLoading] = useState(false)
@@ -45,10 +46,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div>
-            <h3>Scanlators</h3>
-            <p>ainda está em desenvolvimento!</p>
-          </div>
+          <Scanlator />
         </>
       )}
     </main>

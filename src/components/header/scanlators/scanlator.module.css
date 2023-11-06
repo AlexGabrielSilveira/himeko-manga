@@ -1,0 +1,31 @@
+.scanlators_carrousel {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+.scanlators_carrousel::-webkit-scrollbar {
+    background-color: #f2f2f2; 
+    border-radius: 6px; 
+}
+.scanlators_carrousel::-webkit-scrollbar-thumb {
+    background: linear-gradient(15deg, #db0e0e5d, #ffa600c2);
+    border-radius: 6px; 
+}
+.scanlator {
+    max-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+.scanlator h3 {
+    color: #222222a4;
+    transition: 250ms;
+}
+.scanlator:hover h3 {
+    background: linear-gradient(180deg,#ffa600, #db0e0ee7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    transition: 250ms;
+}

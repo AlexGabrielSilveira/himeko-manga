@@ -36,6 +36,17 @@
 .mangas_by_recommendations ul li {
     margin-left: 10px;
 }
+.mangas_by_recommendations ul li a strong {
+    color: #222222a4;
+    transition: 250ms;
+}
+.mangas_by_recommendations ul li a strong:hover{
+    background: linear-gradient(180deg,#ffa600, #db0e0ee7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    transition: 250ms;
+}
 .mangas_by_recommendations svg {
     font-size: 22pt;
 }
