@@ -1,5 +1,5 @@
-/* eslint-disable react/jsx-key */
 "use client";
+
 import { useEffect, useState } from 'react'
 import styles from './page.module.css'
 import Image from 'next/image';
@@ -10,16 +10,16 @@ export default function Home() {
   const[mangaRecommendations, setMangaRecommendations] = useState([])
   const[loading, setLoading] = useState(false)
 
-  function getMangaRecommendations() {
-    fetch(`https://api.jikan.moe/v4/manga/11/recommendations`)
-    .then(res => res.json())
-    .then(res => {
-      setMangaRecommendations(res.data.slice(0,10))
-      setLoading(true)
-    })
+  async function getMangaRecommendations() {
+    let res = await fetch(`https://api.jikan.moe/v4/manga/11/recommendations`)
+    let data = await res.json()
+
+
+    setMangaRecommendations(data.data.slice(0,20))
+    setLoading(true)
   }
   useEffect(() => {
-    getMangaRecommendations()
+    getMangaRecommendations() 
   }, [])
   return (
     <main className={styles.flex_main}>

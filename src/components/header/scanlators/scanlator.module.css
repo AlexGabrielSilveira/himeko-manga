@@ -4,7 +4,6 @@
     overflow-x: scroll;
 }
 .scanlators_carrousel::-webkit-scrollbar {
-    background-color: #f2f2f2; 
     border-radius: 6px; 
 }
 .scanlators_carrousel::-webkit-scrollbar-thumb {

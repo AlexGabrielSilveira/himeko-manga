@@ -9,13 +9,12 @@ export default function Scanlator() {
     const[scans, setScans] = useState()
     const[loading, setLoading] = useState(true)
 
-    function getScans() {
-        fetch("http://localhost:8080/")
-        .then(res => res.json())
-        .then(res => {
-            setScans(res)
-            setLoading(false)
-        })
+    async function getScans() {
+    let res =  await fetch("http://localhost:8080/")
+    let data = await res.json()
+
+        setScans(data)
+        setLoading(false)
     }
     useEffect(() => {
         getScans()

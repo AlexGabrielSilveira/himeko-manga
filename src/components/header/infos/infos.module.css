@@ -1,0 +1,18 @@
+.list {
+    position: fixed;
+    top: 60px;
+    right: 0px;
+    height: 100%;
+    background-color: #0078d7;
+    width: 200px;
+    list-style-type: none;
+    padding: 6px;
+    font-weight: bold
+}
+.list a, .list span {
+    background: linear-gradient(180deg,#ffa600, #db0e0ee7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    transition: 250ms;
+}

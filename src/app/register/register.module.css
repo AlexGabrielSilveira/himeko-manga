@@ -9,8 +9,10 @@
 }
 .message_err {
     font-family: cursive;
-    color: red;
-    padding: 6px;
+    color: #b49191; 
+    padding: 1px;
+    font-size: 12pt;
+    font-weight: bold;
 }
 .register_container form h1 {
     font-family: cursive;
