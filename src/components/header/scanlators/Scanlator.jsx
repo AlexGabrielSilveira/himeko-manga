@@ -4,18 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from './scanlator.module.css'
+import { api } from "@/services/api";
 
 export default function Scanlator() {
     const[scans, setScans] = useState()
     const[loading, setLoading] = useState(true)
 
     function getScans() {
-        fetch("http://localhost:8080/")
-        .then(res => res.json())
-        .then(res => {
-            setScans(res)
-            setLoading(false)
-        })
+        api.get("/scanlator")
+            .then(res => {
+                setScans(res.data)
+                setLoading(false)
+            })
     }
     useEffect(() => {
         getScans()
