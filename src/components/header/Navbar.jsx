@@ -5,7 +5,9 @@ import styles from './navbar.module.css'
 import { useState } from 'react';
 import Link from 'next/link';
 import { AiFillStar } from 'react-icons/ai'
+import { GiHamburgerMenu } from 'react-icons/gi'
 import User from './user/User';
+import Infos from './infos/infos';
 
 
 
@@ -67,9 +69,9 @@ export default function Navbar() {
                     </div>
             </div>
             <div className={styles.user}>
-                <h2 onClick={handleVibility}>Entrar</h2>
+                <h2 onClick={handleVibility}><GiHamburgerMenu /></h2>
                 {visibility == false  ? (
-                    <User />
+                    <Infos />
                 ): ""} 
             </div>
         </header>

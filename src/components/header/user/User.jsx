@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
 import { useState } from 'react'
 import styles from './user.module.css'
-import Link from 'next/link'
 
 export default function User () { 
     const[email, setEmail] = useState()
@@ -20,7 +19,7 @@ export default function User () {
         await fetch('http://localhost:8080/auth/login', {
             method: 'POST',
             headers: {
-                Aceept : "application/json",
+                Accept : "application/json",
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({ email, password})
@@ -32,7 +31,6 @@ export default function User () {
                 <input type="email" placeholder='email' onChange={handleEmail}/>
                 <input type="password" placeholder='password' onChange={handlePassword}/>
                 <button type='submit'>Entrar</button>
-                <p>Não tem uma conta ? cadastre-se<Link href="/register">aqui</Link>!</p>
             </form>
         </div>
     )
