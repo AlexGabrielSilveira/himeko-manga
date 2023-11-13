@@ -6,31 +6,26 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { AiFillStar } from 'react-icons/ai'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import User from './user/User';
 import Infos from './infos/infos';
-
+import { set } from 'zod';
 
 
 export default function Navbar() {
     const[mangas, setMangas] = useState([])
+    const[searchValue, setSearchValue] = useState([])
     const[loading, setLoading] = useState(true)
-    const[searchVisibility, setSearchVisibility] = useState(false)
     const[visibility, setVisibility] = useState(true)
 
     function handleChange(e) {
-        let value = e.target.value
-        if(value.length > 3) {
-            fetch(`https://api.jikan.moe/v4/manga?q=${value}&sfw`)
-            .then(res => res.json())
-            .then(res => {
-                setMangas(res.data)
-                setLoading(false)
-                setVisibility(true)
-            })
-        }
+        setSearchValue(e.target.value.toLowerCase())
     }
-    function handleClick() {
-        setSearchVisibility(!searchVisibility)
+    async function handleClick() {
+        if(searchValue.length > 3) {
+            let res = await fetch(`https://api.jikan.moe/v4/manga?q=${searchValue}&sfw`)
+            let r = await res.json()
+
+            setMangas(r.data)
+        }
     }
     function handleVibility() {
         setVisibility(!visibility)
@@ -43,32 +38,32 @@ export default function Navbar() {
                 </div>
             </Link>
             <div className={styles.search}>
-                <input type='text' placeholder='Ex: One piece' onChange={handleChange} onClick={handleClick}/>
-                    <div className={styles.response}>
-                    {loading == true ? '' : (
-                        mangas?.map((manga) => (
-                        <Link href={`/manga/${manga.mal_id}`} onClick={handleClick} key={manga.mal_id}>
-                            {searchVisibility == true ? (
-                            <div key={manga.mal_id} className={styles.response_container}>
-                                    <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
-                                    <ul className={styles.response_list}>
-                                        <li><strong>{manga.title}</strong></li>
-                                        <li><strong>Autor: </strong>{manga.authors[0]?.name}</li>
-                                        <li><strong>tags: </strong>
-                                        {manga.genres.map(genre => (
-                                            <span key={genre.mal_id}> {genre.name} </span>
-                                            ))}
-                                        </li>
-                                        <li><strong>score<AiFillStar />: </strong>{manga.score}</li>
-                                    </ul>
-                            </div>
-                            ) : ''}
-                        </Link>
-                        ))
-                    )}
-                    </div>
+                <input type='text' placeholder='Ex: One piece' onChange={handleChange}/>
+                <button type='submit' onClick={handleClick}>search</button>
             </div>
-            <div className={styles.user}>
+            {loading == true ? (
+                <>
+                {mangas.map((manga) => (
+                    <Link href="#">
+                        <div key={manga.mal_id} className={styles.response_container}>
+                        <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
+                        <ul className={styles.response_list}>
+                            <li><strong>{manga.title}</strong></li>
+                            <li><strong>Autor: </strong>{manga.authors[0]?.name}</li>
+                            <li><strong>tags: </strong>
+                            {manga.genres.map(genre => (
+                                <span key={genre.mal_id}> {genre.name} </span>
+                                ))}
+                            </li>
+                            <li><strong>score<AiFillStar />: </strong>{manga.score}</li>
+                        </ul>
+                    </div>
+                    </Link>
+                ))}
+                </>
+            ): ''}
+            
+            <div className={styles.login}>
                 <h2 onClick={handleVibility}><GiHamburgerMenu /></h2>
                 {visibility == false  ? (
                     <Infos />

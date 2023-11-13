@@ -49,10 +49,10 @@ export default function Register() {
     async function handleSubmit(e) {
         e.preventDefault()
         validate()
-        await fetch('http://localhost:8080/auth/register', {
+        await fetch(process.env.NEXT_PUBLIC_API_URL + 'auth/register', {
             method: 'POST',
             headers: {
-                Aceept : "application/json",
+                Accept : "application/json",
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({ username, password, email}),

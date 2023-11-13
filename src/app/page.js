@@ -5,7 +5,7 @@ import styles from './page.module.css'
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiMyanimelist } from 'react-icons/si'
-import Scanlator from '@/components/header/scanlators/Scanlator';
+import Scanlator from '@/components/scanlators/Scanlator';
 export default function Home() {
   const[mangaRecommendations, setMangaRecommendations] = useState([])
   const[loading, setLoading] = useState(false)

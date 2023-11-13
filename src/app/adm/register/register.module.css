@@ -1,0 +1,61 @@
+
+.form {
+    margin: 6px;
+}
+.form input, .form button {
+    outline: none;
+    border: none;
+    padding: 6px;
+}
+.container {
+    margin: 0 auto;
+    max-width: 800px;
+    overflow-y: scroll;
+    max-height: 400px;
+}
+.search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+.search button {
+    cursor: pointer;
+}
+.search input {
+    width: 100%;
+}
+.response {
+    padding: 6px 0px;
+    margin: 6px 0px;
+    display: flex;
+}
+.response img {
+    border: 1px solid #222;
+    width: auto;
+    height: auto;
+}
+.response_list li {
+    margin: 2px;
+}
+.response_list li button {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #222;
+    font-weight: bold;
+    cursor: pointer;
+    background: #34e734;
+
+}
+.response_list {
+    padding: 6px;
+    list-style-type: none;
+}
+.response_list svg{
+    margin-bottom: -2px;
+}
+.response_list span{
+    background-color: rgb(128, 128, 128);
+    border-radius: 2px;
+    margin: 4px;
+    padding: 2px;
+}

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styles from './infos.module.css'
 import Link from 'next/link'
-import User from '../user/User'
+import Login from '../login/Login'
 
 export default function Infos() {
     const[login, setLogin] = useState(false)
@@ -34,7 +34,7 @@ export default function Infos() {
             </div>
             <div>
                 {signIn == true ? ( 
-                    <User />
+                    <Login />
                 ): ""}
             </div>
         </main>
