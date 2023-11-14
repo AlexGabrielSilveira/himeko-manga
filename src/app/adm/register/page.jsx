@@ -4,10 +4,11 @@ import styles from './register.module.css'
 import { useState } from "react"
 import { AiFillStar } from 'react-icons/ai'
 import Image from 'next/image'
+import axios from 'axios'
 
 export default function AdmRegister() {
     const[loading, setLoading] = useState(false)
-    const[mangaInfos, setMangaInfos] = useState({ tags: '', score: '', img: '', name: '', description: ''})
+    const[mangaInfos, setMangaInfos] = useState({ tags: '', note: '', img: '', name: '', description: ''})
     const[mangas, setMangas] = useState()
     const[value, setValue] = useState('')
     const[close, setClose] = useState(false)
@@ -26,7 +27,7 @@ export default function AdmRegister() {
     function saveMangaInfos(manga) { 
         setMangaInfos({
             tags: manga.genres.map((genre) => genre.name).join(','),
-            score: manga.score,
+            note: manga.score,
             img: manga.images.jpg.image_url,
             name: manga.title
         })
@@ -41,15 +42,14 @@ export default function AdmRegister() {
     }
     async function handleSubmit(e) {
         e.preventDefault()
-        await fetch(process.env.NEXT_PUBLIC_API_URL + "/admin/manga", {
+        let res = await fetch("http://localhost:8080/admin/manga", {
             method: 'POST',
-            headers: {
-                Accept: "application/json",
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({ mangaInfos })
+            body: JSON.stringify({mangaInfos})
         })
+        let r = await res.json()
+        console.log(r)
     }
+
     return (
     <main>
         <form method="post" onSubmit={handleSubmit} className={styles.form}>
@@ -86,8 +86,8 @@ export default function AdmRegister() {
             )}
             <div>
                 <p>nome: {mangaInfos.name}</p>
-                <p>nota: {mangaInfos.score} </p>
-                <p>tags: {mangaInfos.genre}</p>
+                <p>nota: {mangaInfos.note} </p>
+                <p>tags: {mangaInfos.tags}</p>
                 <p>capa: </p><Image src={mangaInfos.img} height={120} width={80} alt='manga'/>
                 <p>descrição: </p>
                 <textarea onChange={getDescription}></textarea>

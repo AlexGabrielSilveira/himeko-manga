@@ -31,7 +31,7 @@ export default function MangaPage() {
         <div className={styles.container}>
             <div className={styles.container_flex}>
                 <div className={styles.manga_image}>
-                    <Image src={mangaInfos.images.jpg.large_image_url} width="1280" height="720" alt={mangaInfos.title}/>
+                    <Image src={mangaInfos?.images?.jpg?.large_image_url} width="1280" height="720" alt={mangaInfos.title}/>
                 </div>
                 <div className={styles.manga_infos}>
                     <ul> 
