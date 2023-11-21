@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SiMyanimelist } from 'react-icons/si'
 import Scanlator from '@/components/scanlators/Scanlator';
+import Manga from '@/components/newMangas/News';
 export default function Home() {
   const[mangaRecommendations, setMangaRecommendations] = useState([])
   const[loading, setLoading] = useState(false)
@@ -26,9 +27,9 @@ export default function Home() {
       {loading == false ? (<h1>carregando ...</h1>) : (
         <>
           <div className={styles.manga_news}>
-            <h3>Lançamentos</h3>
+            <h3>Lançamentos</h3> 
             <div className={styles.mangas_news}>
-              <h4>teste</h4>
+              <Manga />
             </div>
           </div>
           <div className={styles.manga_recommendations}>

@@ -2,9 +2,9 @@
 
 import styles from './register.module.css'
 import { useState } from "react"
-import { AiFillStar } from 'react-icons/ai'
 import Image from 'next/image'
-import axios from 'axios'
+import { api } from '../../../services/api'
+import Modal from '@/components/modals/search/Modal'
 
 export default function AdmRegister() {
     const[loading, setLoading] = useState(false)
@@ -27,9 +27,10 @@ export default function AdmRegister() {
     function saveMangaInfos(manga) { 
         setMangaInfos({
             tags: manga.genres.map((genre) => genre.name).join(','),
-            note: manga.score,
+            note: manga.score.toString(),
             img: manga.images.jpg.image_url,
-            name: manga.title
+            name: manga.title,
+            mal_id: manga.mal_id
         })
     }
     function handleClose() {
@@ -42,12 +43,8 @@ export default function AdmRegister() {
     }
     async function handleSubmit(e) {
         e.preventDefault()
-        let res = await fetch("http://localhost:8080/admin/manga", {
-            method: 'POST',
-            body: JSON.stringify({mangaInfos})
-        })
-        let r = await res.json()
-        console.log(r)
+        let res = await api.post("/admin/manga", mangaInfos)
+        console.log(res.data)
     }
 
     return (
@@ -62,30 +59,19 @@ export default function AdmRegister() {
                     {close == false ? (
                         <>
                         {mangas.map(manga => (
-                            <div key={manga.mal_id} className={styles.response}>
-                            <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
-                                <ul className={styles.response_list}>
-                                    <li><strong>{manga.title}</strong></li>
-                                    <li><strong>Autor: </strong>{manga.authors[0]?.name}</li>
-                                    <li><strong>Tipo: </strong> {manga.type}</li>
-                                    <li><strong>tags: </strong>
-                                    {manga.genres.map(genre => (
-                                        <span key={genre.mal_id}> {genre.name} </span>
-                                        ))}
-                                    </li>
-                                    <li><strong>score<AiFillStar />: </strong>{manga.score}</li>
-                                    <li>
-                                        <button onClick={() => saveMangaInfos(manga)} onMouseUp={handleClose} type='button'>ADICIONAR</button>
-                                    </li>
-                                </ul>
-                            </div>
+                            <>
+                                <Modal manga={manga} admin={true} />
+                                <button className={styles.admin_button} onClick={() => saveMangaInfos(manga)} onMouseUp={handleClose} type='button'>ADICIONAR</button>
+                            </>
                         ))}
                         </>
                     ): ''}
+                    
                 </div>
             )}
             <div>
                 <p>nome: {mangaInfos.name}</p>
+                <p>mal_id: {mangaInfos.mal_id}</p>
                 <p>nota: {mangaInfos.note} </p>
                 <p>tags: {mangaInfos.tags}</p>
                 <p>capa: </p><Image src={mangaInfos.img} height={120} width={80} alt='manga'/>

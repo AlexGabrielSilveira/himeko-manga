@@ -1,0 +1,36 @@
+.mangas_carrousel {
+    display: flex;
+    justify-content: flex-start;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+.mangas_carrousel::-webkit-scrollbar {
+    border-radius: 6px; 
+}
+.mangas_carrousel::-webkit-scrollbar-thumb {
+    background: linear-gradient(15deg, #db0e0e5d, #ffa600c2);
+    border-radius: 6px; 
+}
+.manga {
+    display: flex;
+}
+.manga h3 {
+    color: #222222a4;
+    transition: 250ms;
+}
+.manga img {
+    height: auto;
+}
+.manga ul {
+    margin-left: 10px;
+}
+.manga h3:hover {
+    background: linear-gradient(180deg,#ffa600, #db0e0ee7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    transition: 250ms;
+}
+.mangas svg {
+    font-size: 22pt;
+}

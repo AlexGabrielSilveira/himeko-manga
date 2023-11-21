@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container ul {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.container ul li {
+    background: linear-gradient(15deg, #db0e0e5d, #ffa600c2);
+    border-radius: 6px; 
+    width: 200px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
