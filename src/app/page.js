@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { SiMyanimelist } from 'react-icons/si'
 import Scanlator from '@/components/scanlators/Scanlator';
 import Manga from '@/components/newMangas/News';
+
+
 export default function Home() {
   const[mangaRecommendations, setMangaRecommendations] = useState([])
   const[loading, setLoading] = useState(false)
@@ -53,4 +55,3 @@ export default function Home() {
     </main>
   )
 }
-7

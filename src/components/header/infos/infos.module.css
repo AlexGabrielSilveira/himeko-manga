@@ -1,13 +1,13 @@
 .list {
+    text-align: center;
     position: fixed;
+    width: 200px;
     top: 60px;
     right: 0px;
-    height: 100%;
-    background-color: #0078d7;
-    width: 200px;
-    list-style-type: none;
-    padding: 6px;
-    font-weight: bold
+    list-style: none;
+    background-color: #f0f0f0;
+    color: #000;
+    border-bottom-left-radius: 10px;
 }
 .list a, .list span {
     background: linear-gradient(180deg,#ffa600, #db0e0ee7);

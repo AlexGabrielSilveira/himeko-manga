@@ -27,7 +27,7 @@ export default function Manga() {
                 <div className={styles.mangas_carrousel}>
                     {mangas.map(manga => (
                         <div key={manga.name} className={styles.manga}>
-                            <Image src={manga.cape_url} width={100} height={80} alt="capa do manga"/>
+                            <Image src={manga.cape_url} height={120} width={80} alt="capa do manga"/>
                             <ul>
                                 <li> <Link href={`/manga/${manga.mal_id}`}><h3>{manga.name}</h3></Link></li>
                                 <li><Link href={`https://myanimelist.net/manga/${manga.mal_id}`} target='_blank'>< SiMyanimelist /></Link></li>

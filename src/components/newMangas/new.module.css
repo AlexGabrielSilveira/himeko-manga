@@ -1,30 +1,27 @@
-.mangas_carrousel {
+.mangas {
     display: flex;
-    justify-content: flex-start;
     overflow-y: hidden;
     overflow-x: scroll;
 }
-.mangas_carrousel::-webkit-scrollbar {
+.mangas::-webkit-scrollbar {
     border-radius: 6px; 
 }
-.mangas_carrousel::-webkit-scrollbar-thumb {
+.mangas::-webkit-scrollbar-thumb {
     background: linear-gradient(15deg, #db0e0e5d, #ffa600c2);
     border-radius: 6px; 
 }
-.manga {
+.mangas div {
     display: flex;
+    margin: 10px;
 }
-.manga h3 {
-    color: #222222a4;
-    transition: 250ms;
+.mangas ul {
+    list-style-type: none;
+    text-align: start;
 }
-.manga img {
-    height: auto;
-}
-.manga ul {
+.mangas ul li {
     margin-left: 10px;
 }
-.manga h3:hover {
+.mangas ul li a strong:hover{
     background: linear-gradient(180deg,#ffa600, #db0e0ee7);
     -webkit-background-clip: text;
     background-clip: text;

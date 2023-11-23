@@ -18,17 +18,10 @@ export default function Infos() {
                 <li>Administração</li>
                 <li>-------------------</li>
                 <li>Perfil</li>
-                <li>Mángas</li>
-                <li>scanlators</li>
-                <li>Categorias</li>
             </>
             ): (
             <>
                 <li><span onClick={handleClick} className={styles.login}>Entre</span> ou <Link href="/register">registre-se!</Link></li>
-                <li>-------------------</li>
-                <li>Mángas</li>
-                <li>scanlators</li>
-                <li>Categorias</li>
             </>
             )}
             </div>
