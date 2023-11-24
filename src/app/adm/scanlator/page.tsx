@@ -10,17 +10,17 @@ export default function ScanlatorRegister() {
         logo: ""
     })
 
-    function handleName(e) {
+    function handleName(e: React.ChangeEvent <HTMLInputElement>) {
         setScanlator({...scanlator, name: e.target.value})
     }
-    function handleUrl(e) {
+    function handleUrl(e: React.ChangeEvent <HTMLInputElement>) {
         setScanlator({...scanlator, url: e.target.value})
     }
-    function handleUpload(e) {
-        setScanlator({...scanlator, logo: e.target.files[0]})
+    function handleUpload(e: React.ChangeEvent ) {
+        setScanlator({...scanlator, logo: e.target.files[0] })
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e: any) {
         e.preventDefault()
 
         const formData = new FormData()

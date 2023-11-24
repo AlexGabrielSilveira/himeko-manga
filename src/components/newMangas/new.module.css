@@ -1,7 +1,15 @@
 .mangas {
     display: flex;
-    overflow-y: hidden;
     overflow-x: scroll;
+    overflow-y: hidden;
+    width: 100%;
+}
+.mangas img {
+    border-radius: 2px;
+    width: 120px;
+    height: auto;
+    box-shadow: 0px 0px 10px 1px rgba(20, 20, 20, 0.288)
+
 }
 .mangas::-webkit-scrollbar {
     border-radius: 6px; 
@@ -10,24 +18,32 @@
     background: linear-gradient(15deg, #db0e0e5d, #ffa600c2);
     border-radius: 6px; 
 }
-.mangas div {
-    display: flex;
+.manga {
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.mangas ul {
-    list-style-type: none;
-    text-align: start;
+.manga ul, .manga a {
+    color: #222;
 }
-.mangas ul li {
-    margin-left: 10px;
+.manga ul {
+    text-align: center;
+    list-style: none;
+    font-size: 10pt;
+    font-weight: bold;
 }
-.mangas ul li a strong:hover{
-    background: linear-gradient(180deg,#ffa600, #db0e0ee7);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; 
-    transition: 250ms;
+.manga ul li {
+    width: 120px;
+    margin: 2px;
+    background: linear-gradient(15deg, #db0e0e, orange) no-repeat fixed;
 }
-.mangas svg {
-    font-size: 22pt;
+.manga ul li h3 {
+    padding: 4px;
+    text-align: center;
+    width: 100%; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
 }

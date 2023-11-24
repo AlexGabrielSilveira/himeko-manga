@@ -4,15 +4,11 @@
     padding-bottom: 8px;
     border-bottom: 2px solid #dcdcdc;
     transition: 250ms;
+    color: #222;
 }
 .response_container:hover {
     transition: 250ms;
     transform: scale(1.007);
-    cursor: pointer;
-}
-.response_container:active {
-    transition: 250ms;
-    transform: scale(1);
     cursor: pointer;
 }
 .response_container img {
@@ -23,7 +19,6 @@
     top: 60px;
     left: 0px;
     width: 100%;
-    color: #222;
     max-height: 400px;
     overflow-y: scroll;
     background-color: #f2f2f2f5;

@@ -5,18 +5,19 @@ import { useState } from "react"
 import Image from 'next/image'
 import { api } from '../../../services/api'
 import Modal from '@/components/modals/search/Modal'
+import { Manga } from '@/components/header/Navbar'
 
 export default function AdmRegister() {
     const[loading, setLoading] = useState(false)
-    const[mangaInfos, setMangaInfos] = useState({ tags: '', note: '', img: '', name: '', description: ''})
-    const[mangas, setMangas] = useState()
+    const[mangaInfos, setMangaInfos] = useState<Manga>({ tags: '', note: '', img: '', name: '', description: '', mal_id: 0})
+    const[mangas, setMangas] = useState<Manga[]>([])
     const[value, setValue] = useState('')
     const[close, setClose] = useState(false)
 
-    function getValue(e) {
+    function getValue(e: React.ChangeEvent <HTMLInputElement>) {
         setValue(e.target.value.toLowerCase())
     }
-    async function searchManga(e) {
+    async function searchManga(e: any) {
         e.preventDefault()
         let res = await fetch(`https://api.jikan.moe/v4/manga?q=${value}&sfw`)
         let r = await res.json()
@@ -24,7 +25,7 @@ export default function AdmRegister() {
         setMangas(r.data.slice(0,10))
         setLoading(true)
     }
-    function saveMangaInfos(manga) { 
+    function saveMangaInfos(manga: Manga[]) { 
         setMangaInfos({
             tags: manga.genres.map((genre) => genre.name).join(','),
             note: manga.score.toString(),
@@ -38,10 +39,10 @@ export default function AdmRegister() {
             setClose(!close)
         }, 200);
     }
-    function getDescription(e) {
+    function getDescription(e: React.ChangeEvent <HTMLTextAreaElement>) {
         setMangaInfos({...mangaInfos,  description: e.target.value})
     }
-    async function handleSubmit(e) {
+    async function handleSubmit(e: any) {
         e.preventDefault()
         let res = await api.post("/admin/manga", mangaInfos)
         console.log(res.data)
@@ -60,7 +61,7 @@ export default function AdmRegister() {
                         <>
                         {mangas.map(manga => (
                             <>
-                                <Modal manga={manga} admin={true} />
+                                <Modal manga={manga} admin={true} state={false} />
                                 <button className={styles.admin_button} onClick={() => saveMangaInfos(manga)} onMouseUp={handleClose} type='button'>ADICIONAR</button>
                             </>
                         ))}

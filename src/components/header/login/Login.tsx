@@ -1,20 +1,20 @@
 "use client";
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styles from './user.module.css'
 
 export default function User () { 
-    const[email, setEmail] = useState()
-    const[password, setPassword] = useState()
+    const[email, setEmail] = useState('')
+    const[password, setPassword] = useState('')
 
-    function handleEmail(e) {
+    function handleEmail(e: React.ChangeEvent < HTMLInputElement >) {
         setEmail(e.target.value)
     }
-    function handlePassword(e) {
+    function handlePassword(e: React.ChangeEvent < HTMLInputElement >) {
         setPassword(e.target.value)
     }
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e: any) {
         e.preventDefault()
         await fetch(process.env.NEXT_PUBLIC_API_URL + '/auth/login', {
             method: 'POST',

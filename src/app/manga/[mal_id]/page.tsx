@@ -7,9 +7,10 @@ import Link from 'next/link';
 import { SiMyanimelist } from 'react-icons/si'
 import Image from "next/image";
 import { AiFillStar } from 'react-icons/ai'
+import { Manga } from '@/components/header/Navbar'
 
 export default function MangaPage() {
-    const[mangaInfos, setMangaInfos] = useState([])
+    const[mangaInfos, setMangaInfos] = useState<Manga[]>([])
     const[loading, setLoading] = useState(true)
     const params = useParams()
     const mal_id = params.mal_id
@@ -39,7 +40,6 @@ export default function MangaPage() {
                         <li><strong>Autor: </strong>{mangaInfos.authors[0].name}</li> 
                         <li><strong>tags: </strong>
                         {mangaInfos.genres.map(genre => (
-                            // eslint-disable-next-line react/jsx-key
                             <span key={genre.mal_id}> {genre.name} </span>
                         ))}
                         </li>

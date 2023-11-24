@@ -5,8 +5,6 @@ import Link from 'next/link'
 
 
 export default function Perfil() {
-
-    
 return (
     <main className={styles.main_container}>
         <div className={styles.user_infos}>

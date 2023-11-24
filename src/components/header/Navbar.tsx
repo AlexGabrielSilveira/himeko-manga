@@ -4,16 +4,30 @@ import styles from './navbar.module.css'
 import { useState } from 'react';
 import Link from 'next/link';
 import { GiHamburgerMenu } from 'react-icons/gi'
-import Infos from './infos/infos';
 import Modal from '../modals/search/Modal';
 
+
+export interface Manga {
+    id: number,
+    name: string,
+    description: string,
+    tags: string,
+    cape_url: string,
+    note: string,
+    mal_id: number,
+    title: string,
+    authors: string[],
+    genres: string[]
+
+}
+
 export default function Navbar() {
-    const[mangas, setMangas] = useState([])
-    const[searchValue, setSearchValue] = useState([])
+    const[mangas, setMangas] = useState <Manga[]>([])
+    const[searchValue, setSearchValue] = useState('')
     const[close, setClose] = useState(false)
     const[visibility, setVisibility] = useState(true)
 
-    function handleChange(e) {
+    function handleChange(e: React.ChangeEvent < HTMLInputElement >) {
         setSearchValue(e.target.value.toLowerCase())
     }
     async function handleClick() {
@@ -42,15 +56,12 @@ export default function Navbar() {
                 {close == false ? (
                     <div className={styles.container}>
                     {mangas.map((manga) => (
-                        <Modal manga={manga} state={close} add={false}/>
+                        <Modal key={manga.id} manga={manga} state={close} admin={false}/>
                     ))}
                 </div>
                 ) : ""}
-            <div className={styles.login}>
+            <div className={styles.login}>      
                 <h2 onClick={handleVibility}><GiHamburgerMenu /></h2>
-                {visibility == false  ? (
-                    <Infos />
-                ): ""} 
             </div>
         </header>
     )

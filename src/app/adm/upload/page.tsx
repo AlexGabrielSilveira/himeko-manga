@@ -11,7 +11,7 @@ export default function AdmUpdateChapter() {
                 </select>
             </div>  
             <form>
-                <Image src="/test_read_page.webp" width="180" height="250"/>
+                <Image src="/test_read_page.webp" width="180" height="250" alt="pagina reste"/>
                 nome: <input type="text" placeholder="one piece"  disabled/>
                 numero do cap: <input type="text" placeholder="Ex: cap 105, cap 105.5"/>
                 nome da scan: <input type="text" placeholder="OPEX"  disabled/>

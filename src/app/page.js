@@ -34,21 +34,6 @@ export default function Home() {
               <Manga />
             </div>
           </div>
-          <div className={styles.manga_recommendations}>
-            <h3>recomendações</h3>
-            <div className={styles.mangas_by_recommendations}>
-              {mangaRecommendations.map(manga => (
-                <div key={manga.url}>
-                  <Image src={manga.entry.images.jpg.image_url} height={120} width={80} alt=''/>
-                  <ul>
-                    <li>{manga.entry.title}</li>
-                    <li><Link href={manga.entry.url} target='_blank'>< SiMyanimelist /></Link></li>
-                    <li><Link href={`/manga/${manga.entry.mal_id}`}><strong>Leia Agora !</strong></Link></li>
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
           <Scanlator />
         </>
       )}

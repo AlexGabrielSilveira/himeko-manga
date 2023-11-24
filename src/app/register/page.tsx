@@ -3,28 +3,35 @@ import { useState } from 'react'
 import styles from './register.module.css'
 import { z } from 'zod'
 
+interface Message {
+    username: string
+    password: string
+    confirmPassword: string
+    email: string
+}
+
 export default function Register() {
     const[username, setUsername] = useState("")
     const[password, setPassword] = useState("")
     const[confirmPassword, setConfirmPassword] = useState("")
     const[email, setEmail] = useState("")
-    const[message, setMessage] = useState({
+    const[message, setMessage] = useState<Message>({
         username: "",
         password: "",
         confirmPassword: "",
         email: ""
     })
 
-    function handleUsername(e) {
+    function handleUsername(e: React.ChangeEvent < HTMLInputElement >) {
         setUsername(e.target.value)
     }
-    function handleConfirmPassword(e) {
+    function handleConfirmPassword(e: React.ChangeEvent < HTMLInputElement >) {
         setConfirmPassword(e.target.value)
     }
-    function handlePassword(e) {
+    function handlePassword(e: React.ChangeEvent < HTMLInputElement >) {
         setPassword(e.target.value)
     }
-    function handleEmail(e) {
+    function handleEmail(e: React.ChangeEvent < HTMLInputElement >) {
         setEmail(e.target.value)
     }
     
@@ -42,11 +49,11 @@ export default function Register() {
                 username: formatted.username._errors[0],
                 password: formatted.password._errors[0],
                 confirmPassword: formatted.confirmPassword._errors[0],
-                email: formatted.email._errors[0]
+                email: formatted.email._errors[0] 
             })
         }
     }
-    async function handleSubmit(e) {
+    async function handleSubmit(e: any) {
         e.preventDefault()
         validate()
         await fetch(process.env.NEXT_PUBLIC_API_URL + 'auth/register', {

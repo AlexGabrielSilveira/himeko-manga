@@ -2,9 +2,16 @@ import Image from 'next/image'
 import { AiFillStar } from 'react-icons/ai'
 import Link from 'next/link'
 import styles from './modal.module.css'
+import { Manga } from '@/components/header/Navbar'
 
-export default function Modal({ manga, state, admin}) {
 
+interface ModalProps {
+    manga: Manga,
+    state: boolean,
+    admin: boolean
+}
+
+export default function Modal({ manga, state, admin}: ModalProps) {
     function handleClose() {
         setClose(state)
     }
@@ -27,7 +34,7 @@ export default function Modal({ manga, state, admin}) {
                 </ul>
             </div>
             ) : (
-            <Link href={`${manga.type}/${manga.mal_id}`} onClick={handleClose}>
+            <Link href={`${manga.type.toLowerCase()}/${manga.mal_id}`} onClick={handleClose}>
             <div key={manga.mal_id} className={styles.response_container}>
             <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
                 <ul className={styles.response_list}>
