@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { GiHamburgerMenu } from 'react-icons/gi'
 import Modal from '../modals/search/Modal';
+import User from './login/Login';
 
 
 export interface Manga {
@@ -34,7 +35,6 @@ export default function Navbar() {
         if(searchValue.length > 3) {
             let res = await fetch(`https://api.jikan.moe/v4/manga?q=${searchValue}&sfw`)
             let r = await res.json()
-
             setMangas(r.data)
         }
     }
@@ -62,6 +62,9 @@ export default function Navbar() {
                 ) : ""}
             <div className={styles.login}>      
                 <h2 onClick={handleVibility}><GiHamburgerMenu /></h2>
+                {visibility == false && 
+                    <User /> 
+                }
             </div>
         </header>
     )
