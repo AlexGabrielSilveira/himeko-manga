@@ -31,9 +31,7 @@ export default function ScanlatorRegister() {
         api.post('/admin/scanlator', formData, {
             headers: { "Content-Type": "multipart/form-data" }
         })
-        .then(res => {
-
-        }).catch(err => console.log(err))
+        
 
     }
     return (

@@ -45,7 +45,6 @@ export default function AdmRegister() {
     async function handleSubmit(e: any) {
         e.preventDefault()
         let res = await api.post("/admin/manga", mangaInfos)
-        console.log(res.data)
     }
 
     return (

@@ -1,12 +1,10 @@
 "use client";
 
 import styles from './navbar.module.css'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Link from 'next/link';
-import { GiHamburgerMenu } from 'react-icons/gi'
 import Modal from '../modals/search/Modal';
-import User from './login/Login';
-
+import User from './googleAuth/LoginOrRegister';
 
 export interface Manga {
     id: number,
@@ -14,7 +12,7 @@ export interface Manga {
     description: string,
     tags: string,
     cape_url: string,
-    note: string,
+    note: string, 
     mal_id: number,
     title: string,
     authors: string[],
@@ -26,7 +24,6 @@ export default function Navbar() {
     const[mangas, setMangas] = useState <Manga[]>([])
     const[searchValue, setSearchValue] = useState('')
     const[close, setClose] = useState(false)
-    const[visibility, setVisibility] = useState(true)
 
     function handleChange(e: React.ChangeEvent < HTMLInputElement >) {
         setSearchValue(e.target.value.toLowerCase())
@@ -38,10 +35,6 @@ export default function Navbar() {
             setMangas(r.data)
         }
     }
-    function handleVibility() {
-        setVisibility(!visibility)
-    }
-
     return (
         <header className={styles.header}>
             <Link href="/">
@@ -61,10 +54,7 @@ export default function Navbar() {
                 </div>
                 ) : ""}
             <div className={styles.login}>      
-                <h2 onClick={handleVibility}><GiHamburgerMenu /></h2>
-                {visibility == false && 
-                    <User /> 
-                }
+                <User /> 
             </div>
         </header>
     )

@@ -25,7 +25,7 @@ export default function Scanlator() {
     }
     useEffect(() => {
         getScans()
-    })
+    }, [])
     return (
         <div className={styles.scanlators}>
             <h3>Scanlators</h3>
