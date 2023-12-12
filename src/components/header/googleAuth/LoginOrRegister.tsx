@@ -28,7 +28,7 @@ const { user } = useContext(AuthContext)
                     </ul>
                     ): ''}
                 </div>
-            ) : (<Link className={styles.login} href={googleOAuth.createLoginUrl()}><FaGoogle /> Entrar com Google </Link>)}
+            ) : (<Link className={styles.login} href={googleOAuth.createLoginUrl()}><FaGoogle /> <span className={styles.login_text}>Entrar com Google</span> </Link>)}
         </div>
     )
 }

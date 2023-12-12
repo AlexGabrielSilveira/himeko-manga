@@ -1,7 +1,9 @@
 "use client";
 
+import Input from "@/components/inputs/Input";
 import { api } from "@/services/api";
 import { useState } from "react"
+import styles from "./styles.module.css"
 
 export default function ScanlatorRegister() {  
     const[scanlator, setScanlator] = useState({
@@ -36,10 +38,10 @@ export default function ScanlatorRegister() {
     }
     return (
     <main>         
-        <form method="post" onSubmit={handleSubmit}>             
-            <input type="text" name="name" placeholder="nome do grupo" onChange={handleName} />
-            <input type="url" name="url" placeholder="site/discord" onChange={handleUrl} />
-            <input type="file" name="logo" title="logo do grupo" onChange={handleUpload}/>
+        <form method="post" onSubmit={handleSubmit} className={styles.form}>             
+            <Input type="text" placeholder="nome do grupo" onChange={handleName} />
+            <Input type="url"  placeholder="site/discord" onChange={handleUrl} />
+            <Input type="file" placeholder="" onChange={handleUpload}/>
             <button type="submit">Cadastrar</button>         
         </form>     
     </main>     

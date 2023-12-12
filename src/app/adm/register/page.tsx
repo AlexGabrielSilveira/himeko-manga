@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { api } from '../../../services/api'
 import { Manga } from '@/components/header/Navbar'
 import { AiFillStar } from 'react-icons/ai'
+import Input from '@/components/inputs/Input'
+
 
 export default function AdmRegister() {
     const[loading, setLoading] = useState(false)
@@ -14,21 +16,23 @@ export default function AdmRegister() {
     const[value, setValue] = useState('')
     const[close, setClose] = useState(false)
 
-    function getValue(e: React.ChangeEvent <HTMLInputElement>) {
+    async function searchManga(e: React.ChangeEvent <HTMLInputElement>) {
         setValue(e.target.value.toLowerCase())
-    }
-    async function searchManga(e: any) {
-        e.preventDefault()
-        let res = await fetch(`https://api.jikan.moe/v4/manga?q=${value}&sfw`)
-        let r = await res.json()
+        if(value.length > 3 ) {
+            e.preventDefault()
+            let res = await fetch(`https://api.jikan.moe/v4/manga?q=${value}&sfw`)
+            let r = await res.json()
 
-        setMangas(r.data.slice(0,10))
-        setLoading(true)
+            setMangas(r.data.slice(0,10))
+            setLoading(true)
+        }
     }
+
     function saveMangaInfos(manga: Manga[]) { 
         setMangaInfos({
             tags: manga.genres.map((genre) => genre.name).join(','),
             note: manga.score.toString(),
+            authors: manga.authors.map((author) => author.name).join(','),
             img: manga.images.jpg.image_url,
             name: manga.title,
             mal_id: manga.mal_id
@@ -37,22 +41,20 @@ export default function AdmRegister() {
     function handleClose() {
         setInterval(() => {
             setClose(!close)
-        }, 200);
+        }, 100);
     }
     function getDescription(e: React.ChangeEvent <HTMLTextAreaElement>) {
         setMangaInfos({...mangaInfos,  description: e.target.value})
     }
     async function handleSubmit(e: any) {
         e.preventDefault()
-        await api.post("/admin/manga", mangaInfos)
     }
 
     return (
     <main>
         <form method="post" onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.search}>
-                <input type="text" placeholder="Nome do manga." onChange={getValue}/>
-                <button onClick={searchManga}>buscar</button>
+                <Input type={"text"} placeholder={"Nome do manga."} onChange={searchManga} />
             </div>
             {loading == false ? '' : (
                 <div className={styles.container}>
@@ -69,6 +71,11 @@ export default function AdmRegister() {
                                     <li><strong>tags: </strong>
                                     {manga.genres.map(genre => (
                                         <span key={genre.mal_id}> {genre.name} </span>
+                                        ))}
+                                    </li>
+                                    <li><strong>tags: </strong>
+                                    {manga.authors.map(author => (
+                                        <span key={author.mal_id}> {author.name} </span>
                                         ))}
                                     </li>
                                     <li><strong>score<AiFillStar />: </strong>{manga.score}</li>
@@ -88,6 +95,7 @@ export default function AdmRegister() {
                 <p>mal_id: {mangaInfos.mal_id}</p>
                 <p>nota: {mangaInfos.note} </p>
                 <p>tags: {mangaInfos.tags}</p>
+                <p>autor: {mangaInfos.authors}</p>
                 <p>capa: </p><Image src={mangaInfos.img} height={120} width={80} alt='manga'/>
                 <p>descrição: </p>
                 <textarea onChange={getDescription}></textarea>

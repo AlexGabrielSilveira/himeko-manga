@@ -8,19 +8,24 @@ import { SiMyanimelist } from 'react-icons/si'
 import Image from "next/image";
 import { AiFillStar } from 'react-icons/ai'
 import { Manga } from '@/components/header/Navbar'
+import { api } from "@/services/api";
 
 export default function MangaPage() {
-    const[mangaInfos, setMangaInfos] = useState<Manga[]>([])
+    const[mangaInfos, setMangaInfos] = useState([])
     const[loading, setLoading] = useState(true)
     const params = useParams()
     const mal_id = params.mal_id
 
-    function getMangaInfos() {
-        fetch(`https://api.jikan.moe/v4/manga/${mal_id}`).then(res => res.json())
-        .then(res => {
+    async function getMangaInfos() {
+        try {
+            let res = await api.get(`/manga/${mal_id}`)
+        
             setMangaInfos(res.data)
             setLoading(false)
-        })
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(() => {
@@ -32,23 +37,18 @@ export default function MangaPage() {
         <div className={styles.container}>
             <div className={styles.container_flex}>
                 <div className={styles.manga_image}>
-                    <Image src={mangaInfos?.images?.jpg?.large_image_url} width="1280" height="720" alt={mangaInfos.title}/>
+                    <Image src={mangaInfos.cape_url} width="1280" height="720" alt={mangaInfos.name}/>
                 </div>
                 <div className={styles.manga_infos}>
                     <ul> 
-                        <li><strong>{mangaInfos.title}</strong></li>
-                        <li><strong>Autor: </strong>{mangaInfos.authors[0].name}</li> 
-                        <li><strong>tags: </strong>
-                        {mangaInfos.genres.map(genre => (
-                            <span key={genre.mal_id}> {genre.name} </span>
-                        ))}
-                        </li>
-                        <li className={styles.score}><strong>score <AiFillStar />: {mangaInfos.score}</strong></li>
-                        <li className={styles.mal}><Link href={`${mangaInfos.url}`} target='_blank'><SiMyanimelist /></Link></li> 
+                        <li><strong>{mangaInfos.name}</strong></li>
+                        <li><strong>Autor: </strong>{manga.authors}</li>
+                        <li><strong>tags: </strong>{mangaInfos.tags}</li>
+                        <li className={styles.score}><strong>score <AiFillStar />: {mangaInfos.note}</strong></li>
                     </ul>
                     <ul>
                         <li><strong>Sinopse</strong></li>
-                        <li className={styles.sinopsys}>{mangaInfos.synopsis}</li> 
+                        <li className={styles.sinopsys}>{mangaInfos.description}</li> 
                     </ul>
                 </div>
             </div>

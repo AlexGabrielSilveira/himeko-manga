@@ -21,9 +21,6 @@
 .search button {
     cursor: pointer;
 }
-.search input {
-    width: 100%;
-}
 .admin_button {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #222;

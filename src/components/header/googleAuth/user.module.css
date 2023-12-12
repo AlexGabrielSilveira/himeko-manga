@@ -16,7 +16,7 @@
 }
 .login svg {
     font-size: 16pt;
-    margin-right: 10px;
+    margin-right: 8px;
 }
 .user ul{
     list-style-type: none;
@@ -25,4 +25,13 @@
     position: fixed;
     top: 60px;
     right: 0px;
+}
+@media (max-width: 650px) {
+    .login_text {
+        display: none;
+    }
+    .login svg {
+        font-size: 16pt;
+        margin-right: 0px;
+    }
 }
