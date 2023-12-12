@@ -4,8 +4,8 @@ import styles from './register.module.css'
 import { useState } from "react"
 import Image from 'next/image'
 import { api } from '../../../services/api'
-import Modal from '@/components/modals/search/Modal'
 import { Manga } from '@/components/header/Navbar'
+import { AiFillStar } from 'react-icons/ai'
 
 export default function AdmRegister() {
     const[loading, setLoading] = useState(false)
@@ -44,7 +44,7 @@ export default function AdmRegister() {
     }
     async function handleSubmit(e: any) {
         e.preventDefault()
-        let res = await api.post("/admin/manga", mangaInfos)
+        await api.post("/admin/manga", mangaInfos)
     }
 
     return (
@@ -59,12 +59,26 @@ export default function AdmRegister() {
                     {close == false ? (
                         <>
                         {mangas.map(manga => (
-                            <>
-                                <Modal manga={manga} admin={true} state={false} />
-                                <button className={styles.admin_button} onClick={() => saveMangaInfos(manga)} onMouseUp={handleClose} type='button'>ADICIONAR</button>
-                            </>
-                        ))}
+                        <>
+                        <div key={manga.mal_id} className={styles.admin_response}>
+                            <Image src={manga.images.jpg.image_url} height={120} width={80} alt='manga'/>
+                                <ul className={styles.admin_response_list}>
+                                    <li><strong>{manga.title}</strong></li>
+                                    <li><strong>Autor: </strong>{manga.authors[0]?.name}</li>
+                                    <li><strong>Tipo: </strong> {manga.type}</li>
+                                    <li><strong>tags: </strong>
+                                    {manga.genres.map(genre => (
+                                        <span key={genre.mal_id}> {genre.name} </span>
+                                        ))}
+                                    </li>
+                                    <li><strong>score<AiFillStar />: </strong>{manga.score}</li>
+                                    
+                                </ul>
+                            </div>
+                        <button className={styles.admin_button} onClick={() => saveMangaInfos(manga)} onMouseUp={handleClose} type='button'>ADICIONAR</button>
                         </>
+                        ))}
+                    </>
                     ): ''}
                     
                 </div>

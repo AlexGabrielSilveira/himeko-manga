@@ -12,13 +12,15 @@ export default function Manga() {
     const[mangas, setMangas] = useState<Manga[]>([])
     const[loading, setLoading] = useState(true)
 
-    function getMangas() {
-        api.get("/manga")
-            .then(res => {
-                setMangas(res.data)
-                setLoading(false)
-            })
+    async function getMangas() {
+        try {
+            let res = await api.get("/manga")
+            setMangas(res.data)
+            setLoading(false)
+        } catch (err) {
+            console.log(err)
         }
+    }
         useEffect(() => {
             getMangas()
         },[])

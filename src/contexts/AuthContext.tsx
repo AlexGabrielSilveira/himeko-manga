@@ -17,9 +17,12 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 export function AuthContextProvider({ children }: { children: React.ReactNode } ) {
     const[user, setUser] = useState<User>()
     async function recoverUserInformation() {
-        let res = await api.get("/auth/me")
-
-        setUser(res.data)
+        try {
+            let res = await api.get("/auth/me")
+            setUser(res.data)
+        } catch (err) {
+            console.log(err)
+        }
     }
     useEffect(() => {
         recoverUserInformation()

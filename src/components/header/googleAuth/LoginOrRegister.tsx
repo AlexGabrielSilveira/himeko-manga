@@ -20,11 +20,9 @@ const { user } = useContext(AuthContext)
         <div className={styles.container}>
             {user != null ? (
                 <div className={styles.user}>
-                    <Image src={user.picture} width={40} height={40} onClick={handleVibility} alt="user logo" />
+                    <h2 onClick={handleVibility}>{user.name}</h2>
                     {options === true ? (
                     <ul>
-                        <li>{user.name}</li>
-                        <li>---------------</li>
                         <li><Link href="/perfil">Perfil</Link></li>
                         <li>Sair </li>
                     </ul>

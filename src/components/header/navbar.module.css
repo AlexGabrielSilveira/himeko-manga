@@ -21,18 +21,14 @@
     width: 50%;
     display: flex;
 }
-.search input, .search button  {
+.search input {
     cursor: pointer;
     outline: none;
     border: none;
     padding: 8px;
-}
-.search input {
     border-top-left-radius: 10px;
-    width: 100%;
-}
-.search button {
     border-bottom-right-radius: 10px;
+    width: 100%;
 }
 .container {
     position: fixed;
@@ -45,6 +41,26 @@
 .login {
     font-family: cursive;
     cursor: pointer;
+}
+.response a {
+    color: #222;
+}
+.card_response {
+    display: flex;
+    padding: 10px;
+}
+.card_response:hover {
+    transition: 250ms;
+    background-color: #00000052;
+}
+.response ul {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+.response img {
+    box-shadow: 0px 0px 10px 0.1px #222;
 }
 @media (max-width: 500px) {
     .logo {
