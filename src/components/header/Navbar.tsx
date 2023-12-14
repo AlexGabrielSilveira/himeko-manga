@@ -18,7 +18,7 @@ export interface Manga {
     note: string, 
     mal_id: number,
     title: string,
-    authors: string[], 
+    authors: string, 
     genres: string[]
 
 }

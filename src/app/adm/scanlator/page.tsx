@@ -42,7 +42,7 @@ export default function ScanlatorRegister() {
             <Input type="text" placeholder="nome do grupo" onChange={handleName} />
             <Input type="url"  placeholder="site/discord" onChange={handleUrl} />
             <Input type="file" placeholder="" onChange={handleUpload}/>
-            <button type="submit">Cadastrar</button>         
+            <button type="submit" className={styles.submit_button}>Cadastrar</button>         
         </form>     
     </main>     
 )   

@@ -42,7 +42,7 @@ export default function MangaPage() {
                 <div className={styles.manga_infos}>
                     <ul> 
                         <li><strong>{mangaInfos.name}</strong></li>
-                        <li><strong>Autor: </strong>{manga.authors}</li>
+                        <li><strong>Autor: </strong>{mangaInfos.authors}</li>
                         <li><strong>tags: </strong>{mangaInfos.tags}</li>
                         <li className={styles.score}><strong>score <AiFillStar />: {mangaInfos.note}</strong></li>
                     </ul>
