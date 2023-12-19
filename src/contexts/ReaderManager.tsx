@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 
 interface ReaderManagerContextProps {
     imagesSource: string[]
-    readerType: 'vertical' | 'paged'
+    readerType: 'vertical' | 'paginação'
     toggleReaderType: () => void
 }
 
@@ -43,11 +43,11 @@ export function ReaderManagerProvider({ children }: { children: React.ReactNode 
         "http://localhost:3000/よつばと!/Yotsubato_v06_024.jpg",
         "http://localhost:3000/よつばと!/Yotsubato_v06_025.jpg",
     ])
-    const [readerType, setReaderType] = useState<'vertical' | 'paged'>("vertical")
+    const [readerType, setReaderType] = useState<'vertical' | 'paginação'>("vertical")
 
     function toggleReaderType() {
         if (readerType === 'vertical') {
-            setReaderType('paged')
+            setReaderType('paginação')
         } else {
             setReaderType('vertical')
         }

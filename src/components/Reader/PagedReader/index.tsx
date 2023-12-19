@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import { useReaderManager } from "@/contexts/ReaderManager";
 import { useCallback, useEffect, useMemo, useState } from "react"
-import styles from './pageReader.module.css'
 
 export function PagedReader() {
     const { imagesSource } = useReaderManager()
@@ -11,7 +11,7 @@ export function PagedReader() {
     const nextPageKeys = useMemo(() => ['ArrowRight', 'd'], [])
     const previousPageKeys = useMemo(() => ['ArrowLeft', 'a'], [])
 
-    function onImageClick(e: React.MouseEvent<HTMLImageElement, MouseEvent>) {
+    function onImageClick(e: React.MouseEvent<HTMLImageElement, MouseEvent>) { 
         const image = e.currentTarget;
         const clickX = e.clientX;
         const imageLeft = image.offsetLeft;
@@ -58,11 +58,11 @@ export function PagedReader() {
     }, [nextPageKeys, nextPage, previousPageKeys, previousPage, currentPage])
 
     return (
-        <div>
-            <h1>{currentPage + 1} / {lastPage + 1}</h1>
-            {/* eslint-disable-next-line */}
-            <img onClick={onImageClick} src={currentImageSource} />
-            <h1>{currentPage + 1} / {lastPage + 1}</h1>
-        </div>
-    )
+        <>
+            <h2>{currentPage + 1} / {lastPage + 1}</h2>
+            <div>
+                <img onClick={onImageClick} src={currentImageSource} width={1920} height={1080} alt="imagem do capitulo"/>
+            </div>
+        </>
+        )
 }

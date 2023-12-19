@@ -1,16 +1,15 @@
 import { useReaderManager } from "@/contexts/ReaderManager"
 import { PagedReader } from "./PagedReader"
 import { VerticalReader } from "./VerticalReader"
+import styles from './reader.module.css'
 
 export function Reader(): JSX.Element {
     const { readerType, toggleReaderType } = useReaderManager()
 
     return (
-        <div>
-            <h1>Leitor</h1>
-            <button onClick={toggleReaderType}>Botao trocador de tipo de leitor</button>
-
-            {readerType === 'paged' ? <PagedReader /> : <VerticalReader />}
+        <div className={styles.container}>
+            <button onClick={toggleReaderType}><span>Leitura:</span> <h3>{readerType }</h3></button>
+            {readerType === 'paginação' ? <PagedReader /> : <VerticalReader />}
         </div>
     )
 }
