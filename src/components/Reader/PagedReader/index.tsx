@@ -1,6 +1,7 @@
 'use client'
 import { useReaderManager } from "@/contexts/ReaderManager";
 import { useCallback, useEffect, useMemo, useState } from "react"
+import styles from './pageReader.module.css'
 
 export function PagedReader() {
     const { imagesSource } = useReaderManager()

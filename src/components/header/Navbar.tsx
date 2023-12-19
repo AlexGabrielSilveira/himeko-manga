@@ -31,8 +31,7 @@ export default function Navbar() {
         setValue(e.target.value)
         try {
             if(value.length > 3) {
-                let res = await api.get(`/manga/${value}`)
-                console.log(res.data)
+                let res = await api.get(`/manga/search/${value}`)
                 setMangas(res.data)
             }
         } catch (error) {
