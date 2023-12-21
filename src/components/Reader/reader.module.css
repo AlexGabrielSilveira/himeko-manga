@@ -9,7 +9,6 @@
     border: 1px solid #222;
 }
 .container button {
-    font-family: cursive;
     display: flex;
     justify-content: space-between;
     background-color: #fff;

@@ -32,7 +32,7 @@ export default function Manga() {
                         <div key={manga.name} className={styles.manga}>
                             <Image src={manga.cape_url} width={1280} height={720}  alt="capa do manga"/>
                             <ul>
-                                <li> <Link href={`/manga/${manga.mal_id}`}><h3>{manga.name}</h3></Link></li>
+                                <li> <Link href={`/manga/${manga.id}`}><h3>{manga.name}</h3></Link></li>
                                 <li>CAPÍTULO 222</li>
                             </ul>
                         </div>

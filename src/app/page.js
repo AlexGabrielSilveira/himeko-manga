@@ -1,7 +1,6 @@
 "use client";
 
 import styles from './page.module.css'
-import Image from 'next/image';
 import Scanlator from '@/components/scanlators/Scanlator';
 import Manga from '@/components/newMangas/News';
 

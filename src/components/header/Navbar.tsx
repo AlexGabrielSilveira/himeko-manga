@@ -8,6 +8,16 @@ import Image from 'next/image';
 import { AiFillStar } from 'react-icons/ai';
 import Input from '../inputs/Input';
 import { api } from '@/services/api';
+import localFont from '@next/font/local';
+
+const introRust = localFont({
+    src: '../../assets/fonts/introRust.otf',
+    display: 'swap',
+})
+const introHead = localFont({
+    src: '../../assets/fonts/introHead.otf',
+    display: 'swap',
+})
 
 export interface Manga {
     id: number,
@@ -24,6 +34,7 @@ export interface Manga {
 }
 
 export default function Navbar() {
+    
     const[mangas, setMangas] = useState <Manga[]>([])
     const[value, setValue] = useState('')
 
@@ -42,7 +53,7 @@ export default function Navbar() {
         setValue('')
     }
     return (
-        <header className={styles.header}>
+        <header className={`${styles.header}  ${introRust.className}`}>
             <Link href="/">
                 <div className={styles.logo}>
                     <h1>H<span className={styles.name}>imeko</span></h1>
@@ -52,7 +63,7 @@ export default function Navbar() {
                 <Input type="text" placeholder='Ex: One piece' onChange={handleChange} />
             </div>
             <div className={styles.container}>
-                <div className={styles.response}>
+                <div className={`${styles.response} ${introHead.className}`}>
                     {value != '' ?  mangas?.map(manga => (
                     <Link href={`/manga/${manga.mal_id}`} className={styles.card_response} key={manga.mal_id} onClick={handleClick}>
                         <Image src={manga.cape_url} height={120} width={80} alt='manga'/>

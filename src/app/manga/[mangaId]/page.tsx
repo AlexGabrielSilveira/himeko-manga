@@ -4,17 +4,15 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from './mangaPage.module.css'
 import Link from 'next/link';
-import { SiMyanimelist } from 'react-icons/si'
 import Image from "next/image";
 import { AiFillStar } from 'react-icons/ai'
-import { Manga } from '@/components/header/Navbar'
 import { api } from "@/services/api";
 
 export default function MangaPage() {
     const[mangaInfos, setMangaInfos] = useState([])
     const[loading, setLoading] = useState(true)
     const params = useParams()
-    const mal_id = params.mal_id
+    const mal_id = params.mangaId
 
     async function getMangaInfos() {
         try {
@@ -55,13 +53,7 @@ export default function MangaPage() {
             <div className={styles.caps_container}>
                 <h1>Capitulos</h1>
                 <div className={styles.caps}>
-                    <Link href={`/read/${mangaInfos.mal_id}`}><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
-                </div>
-                <div className={styles.caps}>
-                    <Link href={`/read/${mangaInfos.mal_id}`}><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
-                </div>
-                <div className={styles.caps}>
-                    <Link href={`/read/${mangaInfos.mal_id}`}><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
+                    <Link href={`/read/manga/${mangaInfos.id}/chapter/1`}><p><span>10/10/2023 | Capitulo 01</span> <span>Opex Scanlator</span></p></Link>
                 </div>
             </div>
         </div>

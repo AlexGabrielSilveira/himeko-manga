@@ -91,7 +91,7 @@ export default function AdmRegister() {
                 </div>
             )}
             <div className={styles.saveMangasInfos}>
-            <Image src={mangaInfos.img} height={1280} width={720} alt='manga'/>
+            <Image src={mangaInfos.img == '' ? '/duck.gif' : mangaInfos.img} height={1280} width={720} alt='manga'/>
                 <ul>
                     <li>nome: {mangaInfos.name}</li>
                     <li>mal_id: {mangaInfos.mal_id}</li>

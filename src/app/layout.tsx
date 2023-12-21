@@ -1,9 +1,12 @@
 import Navbar from '@/components/header/Navbar'
 import './globals.css'
-import { Inter } from 'next/font/google'
 import { AuthContextProvider } from '@/contexts/AuthContext'
+import localFont from '@next/font/local'
 
-const inter = Inter({ subsets: ['latin'] })
+const introHead = localFont({
+  src: '../assets/fonts/introHead.otf',
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'Himeko',
@@ -13,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }: {children: React.ReactNode}) {
   return (
     <html lang="pt_BR">
-      <body className={inter.className}>
+      <body className={introHead.className}>
         <AuthContextProvider>
             <Navbar />
             {children}
@@ -22,3 +25,4 @@ export default function RootLayout({ children }: {children: React.ReactNode}) {
     </html>
   )
 }
+

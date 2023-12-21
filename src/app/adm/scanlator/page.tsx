@@ -30,10 +30,7 @@ export default function ScanlatorRegister() {
         formData.append('name', scanlator.name)
         formData.append('url', scanlator.url)
 
-        api.post('/admin/scanlator', formData, {
-            headers: { "Content-Type": "multipart/form-data" }
-        })
-        
+        api.post('/admin/scanlator', formData)
 
     }
     return (
