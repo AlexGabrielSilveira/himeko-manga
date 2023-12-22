@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { GoogleOAuth } from '@/services/GoogleOAuth';
 import { AuthContext } from '@/contexts/AuthContext';
 import { FaGoogle } from "react-icons/fa";
-import Image from 'next/image';
+import Cookies from 'js-cookie'
 const googleOAuth = new GoogleOAuth()
 
 export default function User () { 
@@ -14,6 +14,11 @@ const { user } = useContext(AuthContext)
     const[options, setOptions] = useState(false)
     function handleVibility() {
         setOptions(!options)
+    }
+
+    function logOut() {
+        Cookies.remove('token')
+        window.location.reload()
     }
 
     return (
@@ -24,7 +29,7 @@ const { user } = useContext(AuthContext)
                     {options === true ? (
                     <ul>
                         <li><Link href="/perfil">Perfil</Link></li>
-                        <li>Sair </li>
+                        <li onClick={logOut}>Sair </li>
                     </ul>
                     ): ''}
                 </div>

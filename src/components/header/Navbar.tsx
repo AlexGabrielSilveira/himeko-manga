@@ -65,7 +65,7 @@ export default function Navbar() {
             <div className={styles.container}>
                 <div className={`${styles.response} ${introHead.className}`}>
                     {value != '' ?  mangas?.map(manga => (
-                    <Link href={`/manga/${manga.mal_id}`} className={styles.card_response} key={manga.mal_id} onClick={handleClick}>
+                    <Link href={`/manga/${manga.id}`} className={styles.card_response} key={manga.mal_id} onClick={handleClick}>
                         <Image src={manga.cape_url} height={120} width={80} alt='manga'/>
                         <ul className={styles.response_list}>
                             <li><strong>{manga.name}</strong></li>

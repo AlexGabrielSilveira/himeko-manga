@@ -22,7 +22,6 @@ export default function Perfil() {
                 <div className={styles.favs}>
                     <h2>Favoritos</h2>
                     <div className={styles.card_container}>
-                        
                         {/* <div className={styles.card}>
                             <Image src="/test_read_page.webp"height={120} width={80} alt=''/>
                             <ul>

@@ -6,7 +6,8 @@ import { api } from "@/services/api";
 interface ReaderManagerContextProps {
     imagesSource: string[]
     readerType: 'vertical' | 'paginação'
-    toggleReaderType: () => void
+    toggleReaderType: () => void,
+    setImagesSource: (src: string[]) => void
 }
 
 const ReaderManagerContext = createContext<ReaderManagerContextProps>({} as ReaderManagerContextProps)
@@ -14,17 +15,7 @@ const ReaderManagerContext = createContext<ReaderManagerContextProps>({} as Read
 export function ReaderManagerProvider({ children }: { children: React.ReactNode }) {
     const [imagesSource, setImagesSource] = useState<string[]>([])
     const [readerType, setReaderType] = useState<'vertical' | 'paginação'>("vertical")
-    const params = useParams<{manga_id: string; chapter_id: string}>()
-    
-    async function getMangaInfos() {
-        try {
-            let res = await api.get(`/manga/${params.manga_id}`)
-            console.log(res.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
+    console.log(imagesSource)
     function toggleReaderType() {
         if (readerType === 'vertical') {
             setReaderType('paginação')
@@ -33,15 +24,12 @@ export function ReaderManagerProvider({ children }: { children: React.ReactNode 
         }
     }
 
-    useEffect(() => {
-        getMangaInfos()
-    }, [])
-
     return (
         <ReaderManagerContext.Provider value={{
             imagesSource,
             readerType,
-            toggleReaderType
+            toggleReaderType,
+            setImagesSource
         }}>
             {children}
         </ReaderManagerContext.Provider>
