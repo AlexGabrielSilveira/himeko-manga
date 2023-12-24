@@ -76,6 +76,7 @@ export default function AdmUpdateChapter() {
         <main className={styles.container}>
             <div className={styles.select_manga}>
                 <select onChange={handleSelectChange}>
+                    <option value="" disabled selected>Selecione um manga</option>
                     {mangas.map(manga => (
                         <option key={manga.id} value={manga.name}>{manga.name}</option>
                     ))}
