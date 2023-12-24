@@ -17,6 +17,9 @@
     align-items: center;
     margin: 20px;
 }
+.scanlator img {
+    border-radius: 4px;
+}
 .scanlator h3 {
     color: #222222a4;
     transition: 250ms;

@@ -25,6 +25,24 @@
     position: fixed;
     top: 60px;
     right: 0px;
+    text-align: center;
+}
+.user li svg {
+    margin: -2px;
+}
+.user li {
+    padding: 4px;
+    border-radius: 4px;
+}
+.user li:hover {
+    transition: 250ms;
+    background-color: #222;
+}
+.user a {
+    color: #f2f2f2;
+}
+.user h2 {
+    text-align: center;
 }
 @media (max-width: 650px) {
     .login_text {

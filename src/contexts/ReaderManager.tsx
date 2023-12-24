@@ -1,7 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useParams } from 'next/navigation'
-import { api } from "@/services/api";
-
 
 interface ReaderManagerContextProps {
     imagesSource: string[]
@@ -15,7 +12,7 @@ const ReaderManagerContext = createContext<ReaderManagerContextProps>({} as Read
 export function ReaderManagerProvider({ children }: { children: React.ReactNode }) {
     const [imagesSource, setImagesSource] = useState<string[]>([])
     const [readerType, setReaderType] = useState<'vertical' | 'paginação'>("vertical")
-    console.log(imagesSource)
+
     function toggleReaderType() {
         if (readerType === 'vertical') {
             setReaderType('paginação')

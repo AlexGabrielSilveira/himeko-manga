@@ -87,7 +87,7 @@ export default function AdmUpdateChapter() {
                     <Input type="number" placeholder="Número do cápitulo: " onChange={handleChapterNumber}/>
                     <Input type="text" placeholder="Scanlator: " onChange={handleScanlator} />
                     <input type="file" multiple onChange={handlePages}/>
-                    <button type="submit">Cadastrar Capitulo</button>
+                    <button type="submit" className={styles.submit_button}>Cadastrar Capitulo</button>
                 </div>
             </form>
         </main>

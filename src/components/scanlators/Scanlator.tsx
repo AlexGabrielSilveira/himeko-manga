@@ -33,7 +33,7 @@ export default function Scanlator() {
                 <div className={styles.scanlators_carrousel}>
                     {scans.map(scan => (
                         <div key={scan.name} className={styles.scanlator}>
-                            <Image src={scan.logo} width={100} height={80} alt="scan logo"/>
+                            <Image src={scan.logo} width={80} height={80} alt="scan logo"/>
                             <Link target="_blank" href={scan.url}><h3>{scan.name}</h3></Link>
                         </div>
                     ))}

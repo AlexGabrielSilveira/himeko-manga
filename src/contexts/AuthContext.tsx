@@ -1,7 +1,7 @@
 'use client'
 
 import { api } from "@/services/api";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 interface AuthContextData {
     user?: User 

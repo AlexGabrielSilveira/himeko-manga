@@ -13,7 +13,8 @@ interface Chapters {
     id: number,
     chapterNumber: number,
     mangaId: number,
-    created_at: string
+    created_at: string,
+    formatted_created_at: string
 }   
 
 export default function MangaPage() {
@@ -34,24 +35,41 @@ export default function MangaPage() {
         }
     }
     async function getChapters() {
-        let res = await api.get(`/manga/${mangaId}/chapters`)
-
-        setChapters(res.data)
-    }
-
-    useEffect(() => {
-        getMangaInfos()
-        getChapters()
-    }, [])
-
-    chapters.map(chapter => console.log(chapter))
+        try {
+            let res = await api.get(`/manga/${mangaId}/chapters`);
+            
+            console.log(res.data)
+            
+            const formattedChapters = res.data.map((chapter: any) => {
+                const createdAtDate = new Date(chapter.created_at)
+                const formattedCreatedAt = createdAtDate.toLocaleString("pt-BR", {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                })
+        
+                return {
+                ...chapter,
+                formatted_created_at: formattedCreatedAt,
+                }
+            })
+        
+            setChapters(formattedChapters);
+            } catch (error) {
+            console.error("Erro ao obter capítulos:", error);
+        }
+        }
+        useEffect(() => {
+            getMangaInfos()
+            getChapters()
+        }, [])
     return ( 
         <>
         {loading == true ? (<h1>carregando ...</h1>) : (
         <div className={styles.container}>
             <div className={styles.container_flex}>
                 <div className={styles.manga_image}>
-                    <Image src={mangaInfos?.cape_url} width="1280" height="720" alt={mangaInfos?.name}/>
+                    <Image src={mangaInfos?.cape_url as string} width="1280" height="720" alt={mangaInfos?.name as string}/>
                 </div>
                 <div className={styles.manga_infos}>
                     <ul> 
@@ -70,7 +88,7 @@ export default function MangaPage() {
                 <h1>Capitulos</h1>
                 <div className={styles.caps}>
                     {chapters.length == 0 ? (<h1>sem nada</h1>) : chapters.map((chapter) => (
-                        <Link key={chapter.id} href={`/read/manga/${mangaInfos?.id}/chapter/${chapter.id}`}><p><span>10/10/2023 | Capitulo {chapter.chapterNumber} </span> <span>Opex Scanlator</span></p></Link>
+                        <Link key={chapter.id} href={`/read/manga/${mangaInfos?.id}/chapter/${chapter.id}`}><p><span>{chapter.formatted_created_at} | Capitulo {chapter.chapterNumber} </span> <span>Opex Scanlator</span></p></Link>
                     ))}
                 </div>
             </div> 
