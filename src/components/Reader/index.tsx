@@ -25,8 +25,10 @@ export function Reader(): JSX.Element {
 
     return (
         <div className={styles.container}>
-            <button onClick={toggleReaderType}><span>Leitura:</span> <h3>{readerType }</h3></button>
-            {readerType === 'paginação' ? <PagedReader /> : <VerticalReader />}
+            <main>
+                <button onClick={toggleReaderType}><span>Leitura:</span> <h3>{readerType }</h3></button>
+                {readerType === 'paginação' ? <PagedReader /> : <VerticalReader />}
+            </main>
         </div>
     )
 }

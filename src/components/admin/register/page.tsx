@@ -7,9 +7,12 @@ import { api } from '../../../services/api'
 import { Manga } from '@/components/header/Navbar'
 import { AiFillStar } from 'react-icons/ai'
 import Input from '@/components/inputs/Input'
+import { useRouter } from 'next/navigation'
 
 
 export default function AdmRegister() {
+    const router = useRouter()
+    const[message, setMessage] = useState('')
     const[loading, setLoading] = useState(false)
     const[mangaInfos, setMangaInfos] = useState<Manga>({ tags: '', note: '', img: '', name: '', description: '', mal_id: 0, authors: ''})
     const[mangas, setMangas] = useState<Manga[]>([])
@@ -48,11 +51,17 @@ export default function AdmRegister() {
     }
     async function handleSubmit(e: any) {
         e.preventDefault()
-        await api.post('/admin/manga', mangaInfos)
+        let res = await api.post('/admin/manga', mangaInfos)
+        setMessage(res.data.msg)
+
+        setTimeout(() => {
+            router.push('/')
+        }, 1000)
     }
 
     return (
         <form method="post" onSubmit={handleSubmit} className={styles.form}>
+            {message && <p className={styles.message}>{message}</p>}
             <div className={styles.search}>
                 <Input type={"text"} placeholder={"Nome do manga."} onChange={searchManga} />
             </div>
@@ -100,7 +109,6 @@ export default function AdmRegister() {
                     <li>autor: {mangaInfos.authors}</li>
                     <li><Input type="text" onChange={getDescription} placeholder='Descrição'/></li>
                 </ul>
-                
             </div>
             <button type="submit" className={styles.submit_button}>Cadastrar</button>
         </form>

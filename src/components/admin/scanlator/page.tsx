@@ -4,8 +4,11 @@ import Input from "@/components/inputs/Input";
 import { api } from "@/services/api";
 import { useState } from "react"
 import styles from "./styles.module.css"
+import { useRouter } from "next/navigation";
 
 export default function ScanlatorRegister() {  
+    const router = useRouter()
+    const[message, setMessage] = useState('')
     const[scanlator, setScanlator] = useState({
         name: "",
         url: "",
@@ -22,7 +25,7 @@ export default function ScanlatorRegister() {
         setScanlator({...scanlator, logo: e.target.files[0] })
     }
 
-    function handleSubmit(e: any) {
+    async function handleSubmit(e: any) {
         e.preventDefault()
 
         const formData = new FormData()
@@ -30,11 +33,16 @@ export default function ScanlatorRegister() {
         formData.append('name', scanlator.name)
         formData.append('url', scanlator.url)
 
-        api.post('/admin/scanlator', formData)
+        let res = await api.post('/admin/scanlator', formData)
+        setMessage(res.data.msg)
 
+        setTimeout(() => {
+            router.push('/')
+        }, 1000)
     }
     return (
     <main>         
+        {message && <p className={styles.message}>{message}</p>}
         <form method="post" onSubmit={handleSubmit} className={styles.form}>             
             <Input type="text" placeholder="nome do grupo" onChange={handleName} />
             <Input type="url"  placeholder="site/discord" onChange={handleUrl} />

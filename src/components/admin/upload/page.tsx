@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from './upload.module.css'
 import Input from "@/components/inputs/Input";
-import { pages } from "next/dist/build/templates/app-page";
+import { useRouter } from "next/navigation";
+
 
 interface Chapter {
     chapterNumber: string,
@@ -18,6 +19,8 @@ interface MangasInfos {
 }
 
 export default function AdmUpdateChapter() {
+    const router = useRouter()
+    const[message, setMessage] = useState('')
     const[mangas, setMangas] = useState<Manga[]>([])
     const[mangaInfos, setMangaInfos] = useState<MangasInfos>()
     const[chapter, setChapter] = useState<Chapter>({
@@ -40,7 +43,7 @@ export default function AdmUpdateChapter() {
             setMangaInfos(selectedManga)
         }
     }
-    function handleSubmit(e: any) {
+    async function handleSubmit(e: any) {
         e.preventDefault()
 
         const formData = new FormData()
@@ -49,8 +52,11 @@ export default function AdmUpdateChapter() {
             formData.append('pagesSrc', page)
         })
         
-        api.post(`/admin/manga/${mangaInfos?.id}/chapter/${chapter.chapterNumber}`, formData)
-
+        let res = await api.post(`/admin/manga/${mangaInfos?.id}/chapter/${chapter.chapterNumber}`, formData)
+        setMessage(res.data.msg)
+        setTimeout(() => {
+            router.push('/')
+        }, 1000)
     }
     useEffect(() => {
         getMangas()
@@ -74,6 +80,7 @@ export default function AdmUpdateChapter() {
 
     return (
         <main className={styles.container}>
+            {message && <p className={styles.message}>{message}</p>}
             <div className={styles.select_manga}>
                 <select onChange={handleSelectChange}>
                     <option value="" disabled selected>Selecione um manga</option>
